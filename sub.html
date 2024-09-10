@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <h1 id="page-title">Level 1, Page 1</h1>
+    <img src="mark top.jpg" alt="Top Image" class="top-image">
+    <div class="image-grid" id="image-grid"></div>
+    <img src="mark bot.jpg" alt="Bot Image" class="bot-image">
+
+<script>
+    const totalPages = 6561;
+    const linksPerPage = 9;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const level = parseInt(urlParams.get('level')) || 1;
+    const pageId = parseInt(urlParams.get('id')) || 1;
+
+    // const winningPageId = Math.floor(Math.random() * totalPages) + 1;
+    const winningPageId = 6561;
+    console.log("Winning Page ID:", winningPageId); // Add this line for testing
+
+    let title = `Level ${level}, Page ${pageId}`;
+    document.getElementById('page-title').innerText = title;
+
+    const imageGrid = document.getElementById('image-grid');
+
+    if (level < 5) {
+        for (let i = 1; i <= linksPerPage; i++) {
+            const nextPageId = (pageId - 1) * linksPerPage + i;
+            const img = document.createElement('img');
+            img.src = `mark${i}.jpg`;
+            img.alt = `Level ${level + 1}, Page ${nextPageId}`;
+            img.onclick = function() {
+                window.location.href = `?level=${level + 1}&id=${nextPageId}`;
+            };
+            imageGrid.appendChild(img);
+        }
+    } else {
+        if (pageId === winningPageId) {
+            imageGrid.innerHTML = "<div class='prize'><img src='coffee.jpg' alt='Prize Image' class='last-image'><p>축하합니다! 보물을 찾으셨습니다 <br>화면을 캡쳐해서 디엠으로 보내주세요</p></div>";
+            
+        } else { 
+            imageGrid.innerHTML = "<p class='text-styled'>처음으로 돌아가기!</p>";
+
+            imageGrid.style.cursor = 'pointer';
+            imageGrid.onclick = function() {
+                window.location.href = '?level=1&id=1';
+            };
+        }
+    }
+</script>
