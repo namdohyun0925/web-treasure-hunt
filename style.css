@@ -27,8 +27,7 @@ h1 {
     gap: 25px; /* 이미지 간격을 줄여 원본에 가깝게 설정 */
     max-width: 400px; /* 적당한 크기로 조정 */
     margin: 0 auto;
-    margin-left: 30px;
-    margin-right: 30px;
+    width: 100%;
 }
 
 .image-grid img {
@@ -76,6 +75,8 @@ h1 {
     font-family: "Do Hyeon", sans-serif;;
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
+    width: 100%; 
+    display: block;
 }
 
 .prize{
@@ -88,6 +89,8 @@ h1 {
     font-family: "Do Hyeon", sans-serif;;
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
+    width: 100%; 
+    display: block;
 }
 
 .last-image {
