@@ -25,12 +25,15 @@
 
     // const winningPageId = Math.floor(Math.random() * totalPages) + 1;
     const winningPageId = 3874;
-    console.log("Winning Page ID:", winningPageId); // Add this line for testing
 
     let title = `Level ${level}, Page ${pageId}`;
     document.getElementById('page-title').innerText = title;
 
     const imageGrid = document.getElementById('image-grid');
+
+    function generateRandomId() {
+        return Math.random().toString(36).substr(2, 9); // 임의의 9자리 문자열 생성
+    }
 
     if (level < 5) {
         for (let i = 1; i <= linksPerPage; i++) {
